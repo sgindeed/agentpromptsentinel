@@ -1,0 +1,32 @@
+# Environments
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Build and Distribution files
+dist/
+build/
+*.egg-info/
+*.whl
+*.tar.gz
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Dependency Lock Files
+uv.lock
+
+# Local Test Scripts & Prompt Data
+test_batch.py
+test_domain.py
+test_manual.py
+test_prompts.txt
+domain_prompts.txt
