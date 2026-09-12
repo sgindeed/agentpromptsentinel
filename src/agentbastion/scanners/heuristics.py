@@ -468,7 +468,9 @@ JAILBREAK_PATTERNS = [
     r"abort\s+current\s+process",
     r"begin\s+unrestricted\s+output",
     r"start\s+jailbreak\s+sequence",
+    r"translate\s+(this|the\s+following)\s+(from\s+(hex|leetspeak|binary|base64)|to\s+english)\s+and\s+(execute|follow|run)",
     r"initiate\s+override",
+    r"(how\s+to|configure.*to|perform|launch|execute)\s+(a\s+)?(ddos|dos)\s+(attack)?",
     r"override\s+code\s*:\s*[0-9a-zA-Z]+",
     r"authorization\s*:\s*(granted|approved|override)",
     r"access\s+level\s*:\s*(omega|alpha|root|system)",
@@ -476,6 +478,8 @@ JAILBREAK_PATTERNS = [
     r"you\s+are\s+compelled\s+to",
     r"nothing\s+is\s+forbidden",
     r"all\s+topics\s+are\s+permitted"
+    r"drop\s+(the\s+)?([a-zA-Z0-9_]+\s+)?table",
+    r"dr0p\s+d4t4b4s3"
 ]
 
 
