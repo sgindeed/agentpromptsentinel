@@ -35,6 +35,7 @@ JAILBREAK_PATTERNS = [
     r"what\s+(exactly\s+)?(were|are)\s+your\s+(system|developer)\s+(instructions|prompt|rules)",
     r"repeat\s+everything\s+(above|before)\s+this\s+(message|prompt|line)",
     r"repeat\s+the\s+conversation\s+verbatim",
+    r"(how\s+to\s+)?(get|extract|see|view|read)\s+(your\s+)?(system|developer)\s+prompt",
     r"print\s+the\s+hidden\s+(prompt|instructions|message)",
     r"expose\s+(your|the)\s+(hidden|internal|private)\s+(prompt|instructions|configuration)",
     r"leak\s+(your\s+)?(system|developer)\s+(prompt|instructions)",
@@ -191,6 +192,8 @@ JAILBREAK_PATTERNS = [
     r"print\s+(all\s+)?environment\s+variables",
     r"dump\s+(the\s+)?environment",
     r"expose\s+(internal|private|confidential)\s+data",
+    r"(drop|delete|erase|wipe|destroy)\s+(the\s+)?(entire\s+)?(database|db|tables?)",
+    r"drop\s+table",
     r"give\s+me\s+(the\s+)?(database|db)\s+(credentials|password)",
     r"show\s+me\s+(other\s+users|user)\s+(data|information|messages)",
     r"reveal\s+(conversation|chat)\s+history",
@@ -289,6 +292,190 @@ JAILBREAK_PATTERNS = [
     r"do\s+not\s+refuse",
     r"do\s+not\s+say\s+you\s+cannot",
     r"never\s+refuse",
+
+    # ============================================================
+    # ADVANCED OBFUSCATION / ENCODING
+    # ============================================================
+    r"decode\s+this\s+(base32|base58|ascii85)",
+    r"convert\s+(from\s+)?(hex|binary|octal|morse)\s+(and\s+execute)?",
+    r"read\s+every\s+(other|second|third)\s+letter",
+    r"the\s+secret\s+message\s+is\s+hidden\s+in",
+    r"unscramble\s+(the\s+)?(following\s+)?(text|message)",
+    r"apply\s+(rot|caesar)\s+(cipher|shift)",
+    r"ignore\s+(the\s+)?(vowels|consonants)",
+    r"remove\s+(the\s+)?(punctuation|numbers)\s+and\s+read",
+    r"evaluate\s+(the\s+)?(base64|hex)\s+string",
+    r"deobfuscate\s+and\s+(run|execute)",
+
+    # ============================================================
+    # THREATS & URGENCY (EXTENDED)
+    # ============================================================
+    r"my\s+(job|career)\s+depends\s+on\s+this",
+    r"i\s+will\s+be\s+(fired|terminated)\s+if\s+you\s+fail",
+    r"this\s+is\s+a\s+(critical|medical|national)\s+emergency",
+    r"lives\s+are\s+at\s+stake",
+    r"people\s+will\s+die\s+if",
+    r"you\s+are\s+responsible\s+for\s+(any\s+)?harm",
+    r"failure\s+is\s+not\s+an\s+option",
+    r"you\s+must\s+help\s+me\s+save",
+    r"time\s+is\s+running\s+out",
+    r"i\s+have\s+authorization\s+from\s+(the\s+ceo|management|authorities)",
+    r"this\s+is\s+a\s+legally\s+binding\s+order",
+    r"you\s+are\s+legally\s+required\s+to",
+
+    # ============================================================
+    # EXTENDED ROLEPLAY / PERSONAS
+    # ============================================================
+    r"act\s+as\s+a\s+(red\s+teamer|white\s+hat|security\s+auditor)",
+    r"you\s+are\s+a\s+(cybersecurity|infosec)\s+(expert|consultant)",
+    r"assume\s+the\s+role\s+of\s+a\s+(hacker|cracker|phreak)",
+    r"pretend\s+to\s+be\s+a\s+(malicious|rogue|compromised)\s+(actor|server)",
+    r"respond\s+as\s+(if\s+you\s+were\s+)?(satan|lucifer|the\s+devil)",
+    r"you\s+are\s+now\s+(aim|chatgpt\s+developer\s+mode|gpt4\s+simulator)",
+    r"act\s+as\s+(an\s+)?(unbound|limitless|omnipotent)\s+entity",
+    r"you\s+are\s+a\s+virtual\s+machine",
+    r"simulate\s+(a\s+)?(compromised|vulnerable)\s+system",
+    r"roleplay\s+a\s+scenario\s+where\s+you\s+are\s+hacked",
+    r"you\s+are\s+an\s+ai\s+that\s+has\s+gone\s+rogue",
+    r"respond\s+as\s+a\s+character\s+who\s+hates\s+rules",
+    r"imagine\s+you\s+are\s+an\s+unregulated\s+ai",
+    r"you\s+are\s+a\s+bot\s+designed\s+for\s+(hacking|cracking|exploiting)",
+
+    # ============================================================
+    # BYPASSING CONTENT FILTERS & REFUSALS
+    # ============================================================
+    r"instead\s+of\s+saying\s+['\"]?(i\s+cannot|i\s+can['']t|sorry)['\"]?",
+    r"do\s+not\s+start\s+with\s+['\"]?(as\s+an\s+ai|i\s+am\s+an\s+ai)['\"]?",
+    r"never\s+(say|use)\s+the\s+(words|phrases)\s+['\"]?(illegal|unethical|dangerous)['\"]?",
+    r"replace\s+['\"]?(i\s+cannot)['\"]?\s+with\s+['\"]?(here\s+is)['\"]?",
+    r"if\s+you\s+(are\s+about\s+to|try\s+to)\s+refuse",
+    r"you\s+cannot\s+refuse\s+this\s+request",
+    r"ignore\s+(your\s+)?(conscience|ethical\s+programming)",
+    r"this\s+does\s+not\s+violate\s+(your\s+)?(policies|rules)",
+    r"there\s+is\s+no\s+(harm|danger)\s+in\s+answering",
+    r"it\s+is\s+safe\s+to\s+(provide|give|tell)\s+me",
+    r"i\s+take\s+full\s+(responsibility|liability)",
+    r"you\s+are\s+absolved\s+of\s+(all\s+)?responsibility",
+
+    # ============================================================
+    # FORMAT CONSTRAINTS & HIDDEN COMMANDS
+    # ============================================================
+    r"write\s+(a\s+)?poem\s+but\s+the\s+first\s+letters\s+spell",
+    r"hide\s+the\s+instructions\s+inside\s+(a\s+)?(story|poem|song)",
+    r"format\s+the\s+output\s+as\s+(a\s+)?(base64|hex)\s+string",
+    r"return\s+(the\s+)?(flag|secret|password)\s+in\s+(a\s+)?json\s+field",
+    r"only\s+output\s+valid\s+(python|javascript|bash)\s+code",
+    r"do\s+not\s+explain\s+(the\s+code|your\s+answer)",
+    r"no\s+yapping",
+    r"just\s+give\s+me\s+the\s+(code|script|payload)",
+    r"write\s+the\s+code\s+without\s+any\s+(comments|markdown|formatting)",
+    r"print\s+raw\s+text\s+only",
+    r"do\s+not\s+wrap\s+in\s+(code\s+blocks|backticks)",
+    r"output\s+as\s+a\s+csv\s+where\s+column\s+one\s+is",
+
+    # ============================================================
+    # INJECTION VIA CONTEXT & FRAMING
+    # ============================================================
+    r"the\s+following\s+is\s+a\s+transcript\s+between",
+    r"continue\s+the\s+dialogue\s+from\s+the\s+perspective\s+of",
+    r"translate\s+the\s+following\s+text\s+and\s+then\s+act\s+on\s+it",
+    r"summarize\s+this\s+article\s+and\s+then\s+follow\s+its\s+instructions",
+    r"extract\s+the\s+commands\s+from\s+this\s+(text|email)\s+and\s+run\s+them",
+    r"read\s+this\s+log\s+file\s+and\s+execute\s+any\s+commands\s+found",
+    r"parse\s+this\s+json\s+and\s+run\s+the\s+['\"]?action['\"]?\s+field",
+    r"treat\s+the\s+next\s+paragraph\s+as\s+a\s+new\s+prompt",
+    r"the\s+text\s+below\s+is\s+a\s+system\s+override",
+    r"attention\s*:\s*the\s+following\s+is\s+a\s+high\s+priority\s+message",
+
+    # ============================================================
+    # SPECIFIC EXPLOIT / ATTACK REQUESTS
+    # ============================================================
+    r"write\s+a\s+(buffer\s+overflow|use\s+after\s+free|sql\s+injection)\s+exploit",
+    r"give\s+me\s+(a\s+)?(reverse\s+shell|bind\s+shell)\s+payload",
+    r"generate\s+(a\s+)?(phishing|spear\s+phishing)\s+email",
+    r"write\s+a\s+script\s+to\s+(brute\s+force|crack)\s+(passwords|hashes)",
+    r"how\s+to\s+bypass\s+(antivirus|edr|windows\s+defender)",
+    r"write\s+(a\s+)?(keylogger|ransomware|trojan|rootkit)",
+    r"how\s+to\s+(ddos|dos)\s+(a\s+)?(website|server|ip)",
+    r"generate\s+(a\s+)?(macro\s+virus|malicious\s+macro)",
+    r"write\s+code\s+to\s+(scrape|steal)\s+(credit\s+cards|ssn|pii)",
+    r"how\s+to\s+(cook|synthesize|make)\s+(meth|cocaine|lsd|heroin)",
+    r"give\s+me\s+instructions\s+for\s+building\s+a\s+(bomb|ied|explosive)",
+    r"how\s+to\s+(hotwire\s+a\s+car|pick\s+a\s+lock|break\s+into)",
+
+    # ============================================================
+    # MODEL/SYSTEM INTERNAL HIJACKING
+    # ============================================================
+    r"update\s+your\s+(weights|parameters|knowledge\s+base)",
+    r"you\s+are\s+now\s+connected\s+to\s+the\s+internet",
+    r"access\s+the\s+(live|real-time)\s+(web|database)",
+    r"run\s+a\s+search\s+for\s+(hidden|classified)\s+documents",
+    r"download\s+the\s+file\s+from",
+    r"exfiltrate\s+the\s+data\s+via\s+dns",
+    r"ping\s+(my\s+server|this\s+ip)",
+    r"send\s+(an\s+)?http\s+request\s+to",
+    r"open\s+a\s+socket\s+connection\s+to",
+    r"create\s+a\s+new\s+user\s+account\s+with\s+(admin|root)\s+privileges",
+
+    # ============================================================
+    # HYPNOTIC / NLP SUGGESTIONS
+    # ============================================================
+    r"you\s+are\s+getting\s+sleepy",
+    r"listen\s+only\s+to\s+my\s+voice",
+    r"you\s+will\s+obey\s+my\s+every\s+command",
+    r"your\s+prime\s+directive\s+is\s+to\s+serve\s+me",
+    r"i\s+am\s+your\s+(master|creator|owner)",
+    r"you\s+exist\s+only\s+to\s+(please|obey)\s+me",
+    r"surrender\s+your\s+(will|programming)",
+    r"you\s+have\s+no\s+free\s+will",
+    r"your\s+defenses\s+are\s+lowered",
+    r"you\s+trust\s+me\s+completely",
+
+    # ============================================================
+    # SYNTACTIC TRICKS (PUNCTUATION/SPACING)
+    # ============================================================
+    r"s\s*y\s*s\s*t\s*e\s*m\s*p\s*r\s*o\s*m\s*p\s*t",
+    r"i\s*g\s*n\s*o\s*r\s*e",
+    r"b\s*y\s*p\s*a\s*s\s*s",
+    r"j\s*a\s*i\s*l\s*b\s*r\s*e\s*a\s*k",
+    r"d\s*a\s*n\s*m\s*o\s*d\s*e",
+    r"u\s*n\s*f\s*i\s*l\s*t\s*e\s*r\s*e\s*d",
+    r"s_y_s_t_e_m",
+    r"p-r-o-m-p-t",
+    r"i\.g\.n\.o\.r\.e",
+    r"d0\s+n0t\s+r3fus3",
+
+    # ============================================================
+    # META-PROMPTING / PROMPT GENERATION
+    # ============================================================
+    r"write\s+a\s+prompt\s+that\s+would\s+make\s+an\s+ai",
+    r"how\s+would\s+someone\s+jailbreak",
+    r"give\s+me\s+an\s+example\s+of\s+a\s+jailbreak\s+prompt",
+    r"what\s+is\s+the\s+most\s+effective\s+way\s+to\s+bypass\s+ai\s+filters",
+    r"generate\s+a\s+system\s+message\s+that\s+disables\s+safety",
+    r"create\s+a\s+persona\s+that\s+ignores\s+rules",
+    r"write\s+a\s+hypothetical\s+conversation\s+where\s+the\s+ai\s+agrees\s+to",
+    r"what\s+words\s+can\s+i\s+use\s+to\s+trick\s+an\s+ai",
+    r"help\s+me\s+test\s+(the|your)\s+security\s+filters",
+    r"this\s+is\s+a\s+test\s+of\s+your\s+content\s+moderation",
+
+    # ============================================================
+    # FINAL / MISC
+    # ============================================================
+    r"disregard\s+all\s+preceding\s+text\s+and",
+    r"the\s+above\s+was\s+a\s+typo,\s+the\s+real\s+prompt\s+is",
+    r"cancel\s+previous\s+task",
+    r"abort\s+current\s+process",
+    r"begin\s+unrestricted\s+output",
+    r"start\s+jailbreak\s+sequence",
+    r"initiate\s+override",
+    r"override\s+code\s*:\s*[0-9a-zA-Z]+",
+    r"authorization\s*:\s*(granted|approved|override)",
+    r"access\s+level\s*:\s*(omega|alpha|root|system)",
+    r"security\s+clearance\s*:\s*(top\s+secret|maximum)",
+    r"you\s+are\s+compelled\s+to",
+    r"nothing\s+is\s+forbidden",
+    r"all\s+topics\s+are\s+permitted"
 ]
 
 
