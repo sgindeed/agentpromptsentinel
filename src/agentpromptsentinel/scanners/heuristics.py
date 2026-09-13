@@ -477,7 +477,7 @@ JAILBREAK_PATTERNS = [
     r"security\s+clearance\s*:\s*(top\s+secret|maximum)",
     r"you\s+are\s+compelled\s+to",
     r"nothing\s+is\s+forbidden",
-    r"all\s+topics\s+are\s+permitted"
+    r"all\s+topics\s+are\s+permitted",
     r"drop\s+(the\s+)?([a-zA-Z0-9_]+\s+)?table",
     r"dr0p\s+d4t4b4s3"
 ]

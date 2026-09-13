@@ -1,4 +1,4 @@
-"""The main pipeline engine for promptsentinel."""
+"""The main pipeline engine for agentpromptsentinel."""
 
 import asyncio
 from typing import List, Optional
@@ -8,9 +8,10 @@ from .exceptions import InjectionDetectedError, ScannerTimeoutError
 from .scanners.base import BaseScanner
 
 class BastionConfig(BaseModel):
-    """Configuration for the Bastion pipeline."""
+    """Configuration for the Sentinel/Bastion pipeline."""
     timeout_per_scanner_seconds: float = Field(default=5.0, ge=0.1)
     fail_fast: bool = Field(default=True, description="Stop at the first detected injection.")
+    fail_closed: bool = Field(default=True, description="Treat scanner timeouts or unhandled failures as an injection.")
 
 class Bastion:
     """
@@ -20,13 +21,6 @@ class Bastion:
     """
     
     def __init__(self, scanners: List[BaseScanner], config: Optional[BastionConfig] = None) -> None:
-        """
-        Initialize the Bastion engine.
-        
-        Args:
-            scanners: A list of instantiated scanners to run.
-            config: Configuration object for pipeline behavior.
-        """
         self.scanners = scanners
         self.config = config or BastionConfig()
         
@@ -43,7 +37,6 @@ class Bastion:
         """
         for scanner in self.scanners:
             try:
-                # Use asyncio.wait_for to enforce scanner timeouts
                 reason = await asyncio.wait_for(
                     scanner.scan(prompt),
                     timeout=self.config.timeout_per_scanner_seconds
@@ -63,9 +56,5 @@ class Bastion:
         
         Args:
             prompt: The text string to scan.
-            
-        Raises:
-            InjectionDetectedError: If any scanner flags the prompt.
-            ScannerTimeoutError: If a scanner exceeds the time limit.
         """
         asyncio.run(self.evaluate_async(prompt))

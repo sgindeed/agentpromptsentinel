@@ -22,8 +22,5 @@ class BaseScanner(abc.ABC):
             
         Returns:
             A string containing the reason if an injection is detected, otherwise None.
-            
-        Raises:
-            ScannerTimeoutError: If the scanner times out.
         """
         pass
