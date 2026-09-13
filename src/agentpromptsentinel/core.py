@@ -36,8 +36,13 @@ class Bastion:
                     if self.config.fail_fast:
                         raise InjectionDetectedError(message=reason, scanner_name=scanner.name)
                     detected_issues.append(f"[{scanner.name}] {reason}")
+                    
+            except InjectionDetectedError:
+                # Let intentional security blocks pass through immediately
+                raise
+                
             except Exception as e:
-                # Handle timeouts and arbitrary Hugging Face crashes
+                # Handle true timeouts and arbitrary Hugging Face crashes
                 is_timeout = isinstance(e, asyncio.TimeoutError)
                 if self.config.fail_closed:
                     if self.config.fail_fast:
@@ -48,9 +53,9 @@ class Bastion:
                 
         # If fail_fast is False, aggregate and raise at the end
         if detected_issues and not self.config.fail_fast:
-            raise InjectionDetectedError(message=" | ".join(detected_issues), scanner_name="Multiple")\
-            
-                        
+            raise InjectionDetectedError(message=" | ".join(detected_issues), scanner_name="Multiple")
+                    
+
     def evaluate(self, prompt: str) -> None:
         """
         Synchronous wrapper for evaluate_async.
