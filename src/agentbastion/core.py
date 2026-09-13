@@ -1,4 +1,4 @@
-"""The main pipeline engine for agentbastion."""
+"""The main pipeline engine for promptsentinel."""
 
 import asyncio
 from typing import List, Optional

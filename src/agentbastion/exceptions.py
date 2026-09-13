@@ -1,7 +1,7 @@
-"""Custom exceptions for the agentbastion library."""
+"""Custom exceptions for the promptsentinel library."""
 
 class BastionError(Exception):
-    """Base exception for all agentbastion errors."""
+    """Base exception for all promptsentinel errors."""
     pass
 
 class InjectionDetectedError(BastionError):

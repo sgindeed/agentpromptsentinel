@@ -1,5 +1,5 @@
 """
-agentbastion - Detect, block, and sanitize prompt injection attacks.
+promptsentinel - Detect, block, and sanitize prompt injection attacks.
 """
 
 from .core import Bastion, BastionConfig
