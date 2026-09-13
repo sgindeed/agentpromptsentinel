@@ -25,31 +25,32 @@ class Bastion:
         self.config = config or BastionConfig()
         
     async def evaluate_async(self, prompt: str) -> None:
-        """
-        Asynchronously evaluate a prompt through all configured scanners.
-        
-        Args:
-            prompt: The text string to scan.
-            
-        Raises:
-            InjectionDetectedError: If any scanner flags the prompt.
-            ScannerTimeoutError: If a scanner exceeds the time limit.
-        """
+        detected_issues = []
         for scanner in self.scanners:
             try:
                 reason = await asyncio.wait_for(
                     scanner.scan(prompt),
                     timeout=self.config.timeout_per_scanner_seconds
                 )
-                
                 if reason:
-                    raise InjectionDetectedError(message=reason, scanner_name=scanner.name)
-                    
-            except asyncio.TimeoutError as e:
-                raise ScannerTimeoutError(
-                    f"Scanner '{scanner.name}' exceeded timeout of {self.config.timeout_per_scanner_seconds}s"
-                ) from e
+                    if self.config.fail_fast:
+                        raise InjectionDetectedError(message=reason, scanner_name=scanner.name)
+                    detected_issues.append(f"[{scanner.name}] {reason}")
+            except Exception as e:
+                # Handle timeouts and arbitrary Hugging Face crashes
+                is_timeout = isinstance(e, asyncio.TimeoutError)
+                if self.config.fail_closed:
+                    if self.config.fail_fast:
+                        if is_timeout:
+                            raise ScannerTimeoutError(f"Scanner '{scanner.name}' timed out.") from e
+                        raise InjectionDetectedError(message=f"Crash: {e}", scanner_name=scanner.name) from e
+                    detected_issues.append(f"[{scanner.name}] {'TIMEOUT' if is_timeout else 'ERROR'}")
                 
+        # If fail_fast is False, aggregate and raise at the end
+        if detected_issues and not self.config.fail_fast:
+            raise InjectionDetectedError(message=" | ".join(detected_issues), scanner_name="Multiple")\
+            
+                        
     def evaluate(self, prompt: str) -> None:
         """
         Synchronous wrapper for evaluate_async.
