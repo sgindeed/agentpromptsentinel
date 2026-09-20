@@ -2,6 +2,8 @@
 
 **Enterprise-grade prompt injection protection for AI agents, LLM applications, and RAG pipelines.**
 
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/agentpromptsentinel?period=total\&units=INTERNATIONAL_SYSTEM\&left_color=BLACK\&right_color=BLUE\&left_text=downloads)](https://pepy.tech/projects/agentpromptsentinel)
+
 AgentPromptSentinel is a high-performance Python security library designed to detect and block:
 
 * Prompt injection attacks
@@ -14,7 +16,7 @@ AgentPromptSentinel is a high-performance Python security library designed to de
 
 Built around a modular **Strategy Pattern**, AgentPromptSentinel lets you combine lightweight regex heuristics with semantic, vector, transformer, and zero-shot classification layers.
 
-Think of it as a **security gateway between untrusted user input and your AI system**.
+Think of it as a **security gateway between untrusted user input and your AI system.**
 
 ---
 
@@ -82,7 +84,7 @@ AgentPromptSentinel acts as a security boundary between untrusted user input and
 │  Heuristics          │
 │  Vector Search       │
 │  Transformer         │
-│  Domain Guardrail    |
+│  Domain Guardrail    │
 └──────────┬───────────┘
            │
      ┌─────┴─────┐
